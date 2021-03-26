@@ -1,0 +1,46 @@
+<%= form_with(model: employee) do |f| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+        <% employee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "Name(s) of the new employee " %>
+  </div>
+  <div>
+    <%= f.label :lastname %>
+    <%= f.text_field :lastname, placeholder: "Employee's Lastname " %>
+  </div>
+  <div>
+    <%= f.label :phone %>
+    <%= f.telephone_field :phone, placeholder: "Employee's phone number " %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email, placeholder: "Employee's email " %>
+  </div>
+  <div>
+    <%= f.label :position %>
+    <%= f.text_field :position, placeholder: "Employee's position " %>
+  </div>
+  <div>
+    <%= f.label :salary %>
+    <%= f.number_field :salary, placeholder: "Employee's salary " %>
+  </div>
+  <div>
+    <%= f.label :department %>
+    <%= f.select :department, ["Accountability", "Finance", "Operations", "Security", "HHRR"], placeholder: "Choose one Dept." %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
