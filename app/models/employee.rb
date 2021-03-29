@@ -18,4 +18,15 @@ class Employee < ApplicationRecord
       Employee.create! row.to_hash
     end
   end
+
+  def self.to_csv
+    headers = %w{ name lastname phone email position salary department }
+    CSV.generate(headers: true) do |csv|
+      csv << headers
+
+      all.each do |emp|
+        csv << emp.attributes.values_at(*headers)
+      end
+    end
+  end
 end
