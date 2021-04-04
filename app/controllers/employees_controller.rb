@@ -50,8 +50,12 @@ class EmployeesController < ApplicationController
   end
 
   def import
-    Employee.import(params[:file])
-    redirect_to employees_path, notice: "Employees data added successfully"
+    if !params[:file]
+      redirect_to employees_path, notice: "No file selected"
+    else
+      Employee.import(params[:file])
+      redirect_to employees_path, notice: "Employees data added successfully"
+    end
   end
 
   private
